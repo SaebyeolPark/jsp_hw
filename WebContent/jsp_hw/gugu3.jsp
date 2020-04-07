@@ -13,15 +13,19 @@ padding : 2px 5px 2px 5px;}
 </head>
 <body>
 <table>
-<%
-for(int i=1; i<=9; i++){
-	out.print("<tr>");
-	for(int j=2; j<=9; j++){
-		out.print("<td>"+j+" x "+i+" = "+j*i+"</td>");
-	}
-	out.print("</tr>");
-}
-%>
+<tr>
+<%for(int i=2; i<=9; i++){%>
+	<td>
+<% for(int j=1; j<=9; j++){
+	out.print(i+" x "+j+" = "+i*j+"<br/>");
+	}%>
+	</td>
+<% if(i==5){%>
+</tr><tr>
+<% }%>
+<% }%>
+</tr>
+
 </table>
 </body>
 </html>
