@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>안녕하세요</h1>
+<% out.print("안녕"); %>
 </body>
 </html>
