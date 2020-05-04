@@ -10,17 +10,19 @@ div {margin: 20px 0px 20px 0px; }
 table { border : 1px solid black; border-collapse : collapse; 
 width: 300px; table-layout: fixed;}
 tr, td { border: 1px solid black; border-collapse : collapse; 
-padding : 2px 5px 2px 5px;}
+padding : 5px 5px 5px 5px;}
  div.error { margin: 10px; padding: 10px 20px; background-color: #fdd; border: 1px solid #faa; }
 </style>
 </head>
 <body>
 <% 
+request.setCharacterEncoding("UTF-8");
+
 String name = request.getParameter("name");
 String result = "";
-String 에러메시지 = null;
+String error = null;
 if(name==null){
-	name="";
+	name=" ";
 }
 String sex = request.getParameter("sex");
 
@@ -29,11 +31,12 @@ if("남자".equals(sex)){
 }else if("여자".equals(sex)){
 	result="여자";
 }
-
+if (request.getMethod().equals("POST")){
 if (name == null || name.length() == 0) 
-    에러메시지 = "이름을 입력하세요";
-else if (result == null || result.length() == 0) 
-    에러메시지 = "성별을 입력하세요";
+	error = "이름을 입력하세요";
+else if (result ==null || result.length() == 0) 
+	error = "성별을 입력하세요";
+}
 %>
 <form method="post">
 <h1>회원등록</h1>
@@ -50,12 +53,11 @@ else if (result == null || result.length() == 0)
 <button type="submit">회원 등록</button>
 </div>
 </form>
-<% if (에러메시지 != null) { %>
+<% if (error != null) { %>
   <div class="error">
-    회원등록 실패: <%= 에러메시지 %>
+    회원등록 실패: <%= error %>
   </div>
 <% } %>
-</div>
 <table>
 <tr>
 <td>이름</td><td><%=name%></td>
