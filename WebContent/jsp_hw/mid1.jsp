@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+div {margin: 20px 0px 20px 0px; }
 table { border : 1px solid black; border-collapse : collapse;}
 tr, td { border: 1px solid black; border-collapse : collapse; 
 padding : 2px 5px 2px 5px;}
@@ -19,9 +20,10 @@ if(cmd==null){
 int number = Integer.parseInt(cmd);
 %>
 <form>
+<div>
 <input type="text" name="cmd" value= "<%=cmd %>"/>
+</div>
 </form>
-<br/>
 <table>
 <%for(int i=1; i<=9; i++){%>
 <tr>
