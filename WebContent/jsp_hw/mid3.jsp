@@ -27,8 +27,13 @@ if("one".equals(cmd)){
 <input type="radio" name="cmd" value="three"<%="three".equals(cmd) ? "checked" : ""%>/>three
 </div>
 <div>
-<input type="text" name="result" value="<%=result %>"/>
+<select>
+<option value="one" <%="one".equals(cmd) ? "selected" : ""%>>one</option>
+<option value="two" <%="two".equals(cmd) ? "selected" : ""%>>two</option>
+<option value="three" <%="three".equals(cmd) ? "selected" : ""%>>three</option>
+</select>
 </div>
+
 <div>
 <button type="submit">Ok</button>
 </div>
