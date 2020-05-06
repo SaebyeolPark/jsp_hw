@@ -32,17 +32,16 @@ public class BookDAO {
 			return list;
 		}
 	}
-	public static List<User> findByName(String title) throws Exception {
-		String sql = "SELECT b.*, c.categoryName " + "FROM book b LEFT JOIN category c ON b.categoryId = c.id"
-				+ "WHERE b.titlr LIKE ?";
+	public static List<Book> findByName(String title) throws Exception {
+		String sql = "SELECT b.*, c.categoryName " + "FROM book b LEFT JOIN category c ON b.categoryId = c.id "
+				+ "WHERE b.author LIKE ?";
 		try (Connection connection = DB.getConnection("book");
 				PreparedStatement statement = connection.prepareStatement(sql)) {
 			statement.setString(1, title + "%");
 			try (ResultSet resultSet = statement.executeQuery()) {
-				ArrayList<User> list = new ArrayList<User>();
+				List<Book> list = new ArrayList<Book>();
 				while (resultSet.next()) {
 					list.add(getBookFrom(resultSet));
-
 				}
 				return list;
 			}

@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, lecture1.jdbc1.*" %>
 <%
-List<Book> list = BookDAO.findAll();
+String srchText = request.getParameter("srchText");
+if (srchText == null) srchText = "";
+List<Book> list = BookDAO.findByName(srchText);
 %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <style>
-    div.container { width: 600px; margin: 50px auto;}
+    div.container { width: 600px; margin: 50px auto; }
+    button { margin: 10px ; padding: 0.4em 2em; }
     thead th { background-color: #eee; }
     table{ border-collapse: collapse; width: 100%; }
     td, th { padding: 4px; border: 1px solid lightgray; }
@@ -19,9 +22,14 @@ List<Book> list = BookDAO.findAll();
 <div class="container">
 
   <h1>책목록</h1>
-  
+<form>
+<label>저자</label>
+<input type="text" name="srchText" value="<%=srchText %>" placeholder="검색조건"/>
+<button type="submit">조회</button>
+</form>  
+
   <table class="table table-bordered table-condensed">
-      <thead>
+       <thead>
           <tr>
               <th>id</th>
               <th>제목</th>
