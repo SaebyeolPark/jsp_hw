@@ -12,6 +12,7 @@ List<User> list = UserDAO2.findByName(srchText);
   <style>
     div.container { width: 600px; margin: 50px auto; }
     thead th { background-color: #eee; }
+    table td:nth-child(4) { text-align : center; }
     table{ border-collapse: collapse; width: 100%; }
     td, th { padding: 4px; border: 1px solid lightgray; }
   </style>
@@ -19,7 +20,8 @@ List<User> list = UserDAO2.findByName(srchText);
 <body>
 <div class="container">
 
-  <h1>학생목록</h1>
+  <h1>사용자목록</h1>
+
 <form>
 <label>이름</label>
 <input type="text" name="srchText" value="<%=srchText %>" placeholder="검색조건"/>
@@ -41,7 +43,7 @@ List<User> list = UserDAO2.findByName(srchText);
           <% for (User user : list) { %>
               <tr>
                   <td><%= user.getUserid() %></td>
-                  <td><%= user.getName() %></td>
+                  <td><a href="user1.jsp?id=<%= user.getId() %>"><%= user.getName() %></a></td>
                   <td><%= user.getEmail() %></td>
                   <td><%= user.getDepartmentName() %></td>
                   <td><%= user.getUserType() %></td>
